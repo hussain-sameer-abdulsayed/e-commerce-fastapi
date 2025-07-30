@@ -1,8 +1,10 @@
+from __future__ import annotations
 from sqlmodel import SQLModel, Field, Relationship
 from typing import List, Optional
 from datetime import datetime
 from uuid import uuid4, UUID
-from models import User, Gender, Product_Review
+
+from .enums import Gender
 
 
 
@@ -22,4 +24,6 @@ class User_Profile(SQLModel, table=True):
 
 
 
-   
+from .user import User
+from .product_review import Product_Review
+User_Profile.model_rebuild()

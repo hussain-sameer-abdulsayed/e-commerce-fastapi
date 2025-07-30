@@ -1,11 +1,12 @@
+from __future__ import annotations
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 from typing import List, Optional
 from uuid import uuid4, UUID
 from decimal import Decimal
+from .product_category import Product_Category
 
 
-from models import Seller_Profile, Product_Review, Category, Product_Category, Order_Item
 
 
 class Product(SQLModel, table=True):
@@ -28,5 +29,11 @@ class Product(SQLModel, table=True):
    @property
    def is_available(self) -> bool:
       return self.stock_quantity > 0
+   
 
 
+
+from .seller_profile import Seller_Profile
+from .category import Category
+from .order_item import Order_Item
+Product.model_rebuild()

@@ -1,7 +1,10 @@
+from __future__ import annotations
 from sqlmodel import Field, Relationship
 from typing import Optional
 from uuid import UUID
-from models import Discount_Base, Product
+
+from .discount_base import Discount_Base
+
 
 
 class Product_Discount(Discount_Base, table=True):
@@ -9,5 +12,5 @@ class Product_Discount(Discount_Base, table=True):
    product : Optional["Product"] = Relationship(back_populates="product_discounts")
 
 
-
-   
+from .product import Product
+Product_Discount.model_rebuild()

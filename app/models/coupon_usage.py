@@ -1,8 +1,9 @@
+from __future__ import annotations
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 from uuid import uuid4, UUID
-from models import User, Coupon
+
 
 
 class Coupon_Usage(SQLModel, table=True):
@@ -14,4 +15,7 @@ class Coupon_Usage(SQLModel, table=True):
    used_at: datetime = Field(default_factory=datetime.utcnow)
 
 
-   
+
+from .user import User
+from .coupon import Coupon
+Coupon_Usage.model_rebuild()

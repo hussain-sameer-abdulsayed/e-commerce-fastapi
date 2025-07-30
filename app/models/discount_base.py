@@ -1,3 +1,4 @@
+from __future__ import annotations
 from sqlmodel import SQLModel
 from sqlmodel import Field
 from typing import Optional
@@ -21,4 +22,4 @@ class Discount_Base(SQLModel, table=False):
    
 
 
-   
+Discount_Base.model_rebuild()

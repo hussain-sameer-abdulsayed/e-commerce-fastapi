@@ -1,9 +1,10 @@
+from __future__ import annotations
 from decimal import Decimal
 from sqlmodel import SQLModel, Field, Relationship
 from datetime import datetime
 from typing import Optional
 from uuid import uuid4, UUID
-from models import Order, Product
+
 
 
 
@@ -24,4 +25,6 @@ class Order_Item(SQLModel, table=True):
       return self.unit_price * self.quantity
    
 
-   
+from .order import Order
+from .product import Product
+Order_Item.model_rebuild()

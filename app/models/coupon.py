@@ -1,15 +1,15 @@
+from __future__ import annotations
 from decimal import Decimal
 from sqlmodel import SQLModel, Field, Relationship
 from datetime import datetime
 from typing import List, Optional
 from uuid import uuid4, UUID
-from models import Coupon_Usage
+
 
 
 class Coupon(SQLModel, table=True):
    id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
    code: str = Field(default_factory=lambda: str(uuid4()), index=True, unique=True)
-   discount_type: Discount_Type
    discount_amount: Decimal
    min_order_amount: Decimal
    max_uses: int
@@ -30,4 +30,5 @@ class Coupon(SQLModel, table=True):
    
 
 
-   
+from .coupon_usage import Coupon_Usage
+Coupon.model_rebuild()

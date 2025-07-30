@@ -1,9 +1,10 @@
-from datetime import date, datetime
+from __future__ import annotations
+from datetime import datetime
 from decimal import Decimal
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 from uuid import uuid4, UUID
-from models import Cart, Product
+
 
 
 class Cart_Item(SQLModel, table=True):
@@ -19,3 +20,8 @@ class Cart_Item(SQLModel, table=True):
    updated_at: Optional[datetime]
 
 
+
+
+from .cart import Cart
+from .product import Product
+Cart_Item.model_rebuild()

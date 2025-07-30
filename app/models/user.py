@@ -1,8 +1,9 @@
+from __future__ import annotations
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 from typing import List, Optional
 from uuid import uuid4, UUID
-from models import Category, Address, Coupon_Usage
+
 
 
 class User(SQLModel, table=True):
@@ -21,4 +22,7 @@ class User(SQLModel, table=True):
    
 
    
-   
+from .category import Category
+from .address import Address
+from .coupon_usage import Coupon_Usage
+User.model_rebuild()

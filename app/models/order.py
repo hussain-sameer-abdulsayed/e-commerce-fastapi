@@ -1,10 +1,12 @@
+from __future__ import annotations
 from decimal import Decimal
 from sqlmodel import SQLModel, Field, Relationship
 from typing import List, Optional
 from datetime import datetime
 from uuid import uuid4, UUID
-from models import Order_Item, Coupon, Address, Shipment, User, Order_Status
-from __future__ import annotations
+
+from .enums import Order_Status
+
 
 def generate_order_number() -> str:
     today = datetime.today()
@@ -40,4 +42,9 @@ class Order(SQLModel, table=True):
 
 
 
-   
+from .user import User
+from .address import Address
+from .coupon import Coupon
+from .shipment import Shipment
+from .order_item import Order_Item
+Order.model_rebuild()   

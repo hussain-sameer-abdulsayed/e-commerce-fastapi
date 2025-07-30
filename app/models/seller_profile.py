@@ -1,9 +1,9 @@
+from __future__ import annotations
 from datetime import datetime
-from models import Address
 from typing import List, Optional
 from sqlmodel import Field, SQLModel, Relationship
 from uuid import uuid4, UUID
-from models import User
+
 
 
 class Seller_Profile(SQLModel, table=True):
@@ -22,3 +22,6 @@ class Seller_Profile(SQLModel, table=True):
 
 
 
+from .user import User
+from .address import Address
+Seller_Profile.model_rebuild()

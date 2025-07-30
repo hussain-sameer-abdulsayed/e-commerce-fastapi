@@ -1,8 +1,9 @@
+from __future__ import annotations
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 from uuid import uuid4, UUID
-from models import User_Profile, Product
+
 
 
 class Product_Review(SQLModel, table=True):
@@ -19,3 +20,6 @@ class Product_Review(SQLModel, table=True):
 
 
 
+from .user_profile import User_Profile
+from .product import Product
+Product_Review.model_rebuild()

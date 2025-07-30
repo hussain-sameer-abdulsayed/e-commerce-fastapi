@@ -1,9 +1,10 @@
+from __future__ import annotations
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 from datetime import datetime
 from uuid import uuid4, UUID
-from models import User, Province, Seller_Profile
 
+from .enums import Province
 
 
 
@@ -27,3 +28,6 @@ class Address(SQLModel, table=True):
 
 
 
+from .user import User
+from .seller_profile import Seller_Profile
+Address.model_rebuild()

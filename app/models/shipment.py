@@ -1,9 +1,12 @@
+from __future__ import annotations
 from decimal import Decimal
 from sqlmodel import SQLModel, Field
 from typing import Optional
 from datetime import datetime
 from uuid import uuid4, UUID
-from models import Province
+
+
+from .enums import Province
 
 
 
@@ -15,3 +18,5 @@ class Shipment(SQLModel, table=True):
    updated_at: Optional[datetime]
 
 
+
+Shipment.model_rebuild()
