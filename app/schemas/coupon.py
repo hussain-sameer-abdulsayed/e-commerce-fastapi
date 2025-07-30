@@ -1,13 +1,13 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from typing import Optional
-from pydantic import BaseModel
 from uuid import UUID
+from schemas import BaseSchema
 
-from models import Discount_Type
 
 
-class CouponBase(BaseModel):
+class CouponBase(BaseSchema):
    discount_amount: int
    min_order_amount: Decimal
    max_uses: int
@@ -39,6 +39,6 @@ class CouponRead(CouponBase):
    updated_at: Optional[datetime]
 
 
-   
-   class Config:
-      orm_mode = True
+
+
+      

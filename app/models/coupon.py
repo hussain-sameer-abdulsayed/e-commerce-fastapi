@@ -1,9 +1,9 @@
 from decimal import Decimal
 from sqlmodel import SQLModel, Field, Relationship
-from datetime import date, datetime
-from typing import Optional
+from datetime import datetime
+from typing import List, Optional
 from uuid import uuid4, UUID
-from models import Discount_Type, Coupon_Usage
+from models import Coupon_Usage
 
 
 class Coupon(SQLModel, table=True):
@@ -25,5 +25,9 @@ class Coupon(SQLModel, table=True):
 
    @property
    def is_currently_active(self):
-      now = datetime.utcnow
+      now = datetime.utcnow()
       return self.is_active and self.start_at <= now <= self.end_at
+   
+
+
+   

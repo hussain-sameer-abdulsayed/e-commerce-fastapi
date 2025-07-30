@@ -19,7 +19,7 @@ class Product(SQLModel, table=True):
    seller_profile: Optional["Seller_Profile"] = Relationship(back_populates="products")
    created_at: datetime = Field(default_factory=datetime.utcnow)
    updated_at: Optional[datetime]
-   reviews: List[Product_Review] = Relationship(back_populates="prodcut")
+   reviews: List[Product_Review] = Relationship(back_populates="product")
    categories: List["Category"] = Relationship(back_populates="products", link_model=Product_Category)
    order_items: Optional[List["Order_Item"]] = Relationship(back_populates="product")
 

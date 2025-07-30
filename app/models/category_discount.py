@@ -1,7 +1,7 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 from uuid import UUID
-from models import DiscountBase, Category
+from models import Category
 
 
 class Category_Discount(SQLModel, DiscountBase):

@@ -1,6 +1,6 @@
 from sqlmodel import Field, Relationship
 from typing import Optional
-from uuid import uuid4, UUID
+from uuid import UUID
 from models import Discount_Base, Product
 
 

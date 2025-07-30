@@ -1,11 +1,11 @@
-from pydantic import BaseModel
-from sqlmodel import SQLModel, Field, Relationship
+from sqlmodel import SQLModel
+from sqlmodel import Field
 from typing import Optional
 from datetime import date, datetime
 from uuid import uuid4, UUID
 
 
-class Discount_Base(BaseModel):
+class Discount_Base(SQLModel, table=False):
    id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
    discount_amount: int
    is_active: bool = Field(default=True)
@@ -16,7 +16,7 @@ class Discount_Base(BaseModel):
 
    @property
    def is_currently_active(self) -> bool:
-      now = datetime.utcnow 
+      now = datetime.utcnow()
       return self.is_active and self.start_at <= now <= self.end_at
    
 

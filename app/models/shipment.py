@@ -1,9 +1,9 @@
 from decimal import Decimal
-from sqlmodel import SQLModel, Field, Relationship
+from sqlmodel import SQLModel, Field
 from typing import Optional
 from datetime import datetime
 from uuid import uuid4, UUID
-from models.enums import Province
+from models import Province
 
 
 

@@ -1,6 +1,6 @@
 from decimal import Decimal
 from sqlmodel import SQLModel, Field, Relationship
-from datetime import date, datetime
+from datetime import datetime
 from typing import Optional
 from uuid import uuid4, UUID
 from models import Order, Product

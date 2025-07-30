@@ -1,8 +1,4 @@
-from .enums import Discount_Type
-from .enums import Discount_Model_Type
-from .enums import Gender
-from .enums import Province
-from .enums import Order_Status
+from .enums import Discount_Model_Type, Gender, Province, Order_Status
 
 from .discount_base import Discount_Base
 from .cart import Cart
@@ -22,4 +18,6 @@ from .user import User
 from .shipment import Shipment
 from .category_discount import Category_Discount
 from .product_review import Product_Review
+
+
 

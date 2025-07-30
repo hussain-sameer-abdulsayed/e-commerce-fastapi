@@ -1,6 +1,6 @@
-from datetime import date, datetime
+from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional
+from typing import List, Optional
 from uuid import uuid4, UUID
 from models import Product, User, Category_Discount, Product_Category
 
@@ -15,7 +15,7 @@ class Category(SQLModel, table=True):
    created_at: datetime = Field(default_factory=datetime.utcnow)
    updated_at: Optional[datetime]
    products: Optional[List["Product"]] = Relationship(back_populates="categories", link_model=Product_Category)
-   category_discounts: Optional[List[Category_Discount]] = Relationship(back_populates="categpry")
+   category_discounts: Optional[List[Category_Discount]] = Relationship(back_populates="category")
 
 
 

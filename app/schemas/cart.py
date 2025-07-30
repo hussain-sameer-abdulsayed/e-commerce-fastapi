@@ -1,14 +1,13 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from typing import List, Optional
-from pydantic import BaseModel
 from uuid import UUID
-
-from schemas.cartitem import CartItemRead
-
+from schemas import BaseSchema, CartItemRead
 
 
-class CartBase(BaseModel):
+
+class CartBase(BaseSchema):
    user_id: UUID
 
 
@@ -23,7 +22,4 @@ class CartRead(CartBase):
    coupon_id: Optional[UUID] = None
    coupon_amount: Optional[Decimal]  = None
    created_at: datetime
-
-
-   class Config:
-      orm_mode = True
+   updated_at: Optional[datetime] = None

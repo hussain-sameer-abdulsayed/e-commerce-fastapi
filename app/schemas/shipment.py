@@ -1,13 +1,14 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from typing import Optional
-from pydantic import BaseModel
+from schemas import BaseSchema
 from uuid import UUID
 from models import Province
 
 
 
-class ShipmentBase(BaseModel):
+class ShipmentBase(BaseSchema):
    province: Province
    cost: Decimal 
    
@@ -30,6 +31,5 @@ class ShipmentRead(ShipmentBase):
 
 
 
-   
-   class Config:
-      orm_mode = True
+
+

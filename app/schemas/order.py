@@ -1,14 +1,14 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from typing import List, Optional
-from pydantic import BaseModel
 from uuid import UUID
-from models.enums import Order_Status
-from schemas.order_item import OrderItemCreate, OrderItemRead
-from __future__ import annotations
+from models import Order_Status
+from schemas import OrderItemRead, BaseSchema
 
 
-class OrderBase(BaseModel):
+
+class OrderBase(BaseSchema):
    address_id: UUID
    ship_to_province: str
    ship_to_city: str
@@ -42,5 +42,4 @@ class OrderRead(OrderCreate):
 
 
 
-   class Config:
-      orm_mode: True
+

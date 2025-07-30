@@ -1,11 +1,12 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from typing import Optional
-from pydantic import BaseModel
+from schemas import BaseSchema
 from uuid import UUID
 
 
-class ProductDiscountBase(BaseModel):
+class ProductDiscountBase(BaseSchema):
    product_id: UUID
    discount_amount: Decimal
    is_active: bool
@@ -31,6 +32,3 @@ class ProductDiscountRead(ProductDiscountBase):
    is_currently_active: bool
 
 
-   
-   class Config:
-      orm_mode = True

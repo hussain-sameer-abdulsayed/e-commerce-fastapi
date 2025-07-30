@@ -1,11 +1,12 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from typing import Optional
-from pydantic import BaseModel
+from schemas import BaseSchema
 from uuid import UUID
 
 
-class OrderItemBase(BaseModel):
+class OrderItemBase(BaseSchema):
    product_id: UUID
    quantity: int
    
@@ -25,5 +26,4 @@ class OrderItemRead(OrderItemCreate):
    updated_at: Optional[datetime] = None
    sub_total: Decimal
 
-   class Config:
-      orm_mode = True
+

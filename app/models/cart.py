@@ -1,7 +1,7 @@
 from decimal import Decimal
 from sqlmodel import SQLModel, Field, Relationship
 from datetime import datetime
-from typing import Optional
+from typing import List, Optional
 from uuid import uuid4, UUID
 from models import User, Coupon, Cart_Item
 
@@ -17,5 +17,5 @@ class Cart(SQLModel, table=True):
    coupon: Optional["Coupon"] = Relationship(back_populates="cart")
    coupon_amount: Decimal | None = None
    created_at: datetime = Field(default_factory=datetime.utcnow)
-
+   updated_at: Optional[datetime] = None
 

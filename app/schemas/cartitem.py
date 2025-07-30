@@ -1,11 +1,12 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
-from typing import List, Optional
-from pydantic import BaseModel
+from typing import Optional
 from uuid import UUID
+from schemas import BaseSchema
 
 
-class CartItemBase(BaseModel):
+class CartItemBase(BaseSchema):
    quantity: int
    product_id: UUID
 
@@ -25,6 +26,3 @@ class CartItemRead(CartItemBase):
    created_at: datetime
    updated_at: Optional[datetime] = None
 
-
-   class Config:
-      orm_mode = True

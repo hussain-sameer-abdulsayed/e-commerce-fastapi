@@ -1,10 +1,10 @@
+from __future__ import annotations
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel
 from uuid import UUID
+from schemas import BaseSchema
 
 
-class CouponUsageBase(BaseModel):
+class CouponUsageBase(BaseSchema):
    user_id: UUID
    coupon_id: UUID
 
@@ -17,6 +17,3 @@ class CouponUsageRead(CouponUsageBase):
    id: UUID
    used_at: datetime
 
-
-   class Config:
-      orm_mode = True

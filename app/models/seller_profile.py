@@ -1,6 +1,6 @@
-from datetime import date, datetime
+from datetime import datetime
 from models import Address
-from typing import Optional
+from typing import List, Optional
 from sqlmodel import Field, SQLModel, Relationship
 from uuid import uuid4, UUID
 from models import User
@@ -19,5 +19,6 @@ class Seller_Profile(SQLModel, table=True):
    created_at: datetime = Field(default_factory=datetime.utcnow)
    updated_at: Optional[datetime]
    addresses: List["Address"] = Relationship(back_populates="seller_profile")
+
 
 

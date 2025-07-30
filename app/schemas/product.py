@@ -1,12 +1,13 @@
+from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from typing import List, Optional
-from pydantic import BaseModel
+from schemas import BaseSchema
 from uuid import UUID
 
 
 
-class ProductBase(BaseModel):
+class ProductBase(BaseSchema):
    name: str
    price: Decimal
    stock_quantity: int
@@ -35,5 +36,7 @@ class ProductRead(ProductBase):
    updated_at: datetime
    is_available: bool
 
-   class Config:
-      orm_mode = True
+
+
+
+      

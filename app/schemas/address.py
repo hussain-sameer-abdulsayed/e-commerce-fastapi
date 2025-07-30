@@ -1,12 +1,13 @@
+from __future__ import annotations
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from schemas import BaseSchema
 from uuid import UUID
 from models import Province
 
 
 
-class AddressBase(BaseModel):
+class AddressBase(BaseSchema):
    province: Province
    city: str
    street: str
@@ -38,5 +39,4 @@ class AddressRead(AddressBase):
    updated_at: datetime
 
 
-   class Config:
-      orm_mode = True
+

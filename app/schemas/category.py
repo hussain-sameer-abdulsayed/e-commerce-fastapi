@@ -1,12 +1,11 @@
+from __future__ import annotations
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel
 from uuid import UUID
+from schemas import BaseSchema, ProductRead
 
-from schemas.product import ProductRead
 
-
-class CategoryBase(BaseModel):
+class CategoryBase(BaseSchema):
    name: str 
    description: str
    main_image_url: Optional[str] = None
@@ -30,5 +29,4 @@ class CategoryRead(CategoryCreate):
    products: Optional[List[ProductRead]] = None
 
 
-   class Config:
-      orm_mode = True
+      
