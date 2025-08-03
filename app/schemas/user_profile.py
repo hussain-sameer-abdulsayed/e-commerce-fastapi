@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional
 from schemas import BaseSchema
 from uuid import UUID
-from models import Gender
+from app.enums.enums import Gender
 
 
 

@@ -6,3 +6,4 @@ sqlmodel
 pydantic
 alembic
 sqlalchemy
+asyncpg

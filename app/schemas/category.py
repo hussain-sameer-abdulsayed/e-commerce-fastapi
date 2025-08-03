@@ -2,7 +2,8 @@ from __future__ import annotations
 from datetime import datetime
 from typing import List, Optional
 from uuid import UUID
-from schemas import BaseSchema, ProductRead
+from .base_schema import BaseSchema
+from .product import ProductRead
 
 
 class CategoryBase(BaseSchema):

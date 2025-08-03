@@ -3,7 +3,8 @@ from datetime import datetime
 from decimal import Decimal
 from typing import List, Optional
 from uuid import UUID
-from schemas import BaseSchema, CartItemRead
+from .base_schema import BaseSchema
+from .cartitem import CartItemRead
 
 
 

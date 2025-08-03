@@ -3,7 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Optional
 from uuid import UUID
-from schemas import BaseSchema
+from .base_schema import BaseSchema
 
 
 class CategoryDiscountBase(BaseSchema):

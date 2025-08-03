@@ -4,7 +4,8 @@ from decimal import Decimal
 from typing import List, Optional
 from uuid import UUID
 from models import Order_Status
-from schemas import OrderItemRead, BaseSchema
+from .base_schema import BaseSchema
+from .order_item import OrderItemRead
 
 
 

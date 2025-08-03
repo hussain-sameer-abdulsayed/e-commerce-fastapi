@@ -6,12 +6,7 @@ from uuid import uuid4, UUID
 
 
 
-class Product_Review(SQLModel, table=True):
-   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
-   user_profile_id: Optional[UUID] = Field(default=None, foreign_key="user_profile.id")
-   user_profile: Optional["User_Profile"] = Relationship(back_populates="product_reviews")
-   product_id: Optional[UUID] = Field(default=None, foreign_key="product.id")
-   product: Optional["Product"] = Relationship(back_populates="product_reviews")
+class ProductReviewBase(SQLModel, table=False):
    rating: int
    comment: Optional[str] = None
    is_approved: bool = Field(default=False)
@@ -20,6 +15,26 @@ class Product_Review(SQLModel, table=True):
 
 
 
-from .user_profile import User_Profile
-from .product import Product
-Product_Review.model_rebuild()
+   product_id: UUID = Field(foreign_key="products.id", index=True)
+   product: "Product" = Relationship(back_populates="product_reviews")
+
+
+   user_profile_id: UUID = Field(foreign_key="user_profiles.id", index=True)
+   user_profile: "UserProfile" = Relationship(back_populates="product_reviews")
+
+
+
+
+
+class ProductReview(ProductReviewBase, table=True):
+   __tablename__ = "reviews"
+   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+
+
+
+
+
+
+from app.models.product import Product
+from app.models.user_profile import UserProfile
+ProductReview.model_rebuild()

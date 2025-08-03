@@ -6,22 +6,32 @@ from typing import Optional
 from uuid import uuid4, UUID
 
 
-
-class Cart_Item(SQLModel, table=True):
-   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
-   cart_id: Optional[UUID] = Field(default=None, foreign_key="cart.id")
-   cart: Optional["Cart"] =  Relationship(back_populates="cart_items")
-   product_id: Optional[UUID] = Field(default=None, foreign_key="product.id")
-   product: Optional["Product"] = Relationship(back_populates="cart_item")
-   quantity: int
-   unit_price: Decimal
-   total: Decimal
+class CartItemBase(SQLModel, table=False):
+   quantity: int = Field(gt=0)
+   unit_price: Decimal = Field(gt=0)
    created_at: datetime = Field(default_factory=datetime.utcnow)
-   updated_at: Optional[datetime]
+   updated_at: Optional[datetime] = None
+
+
+   cart_id: UUID = Field(foreign_key="carts.id", index=True)
+   cart: "Cart" =  Relationship(back_populates="cart_items")
+
+
+   product_id: UUID = Field(foreign_key="products.id", index=True)
+   product: "Product" = Relationship(back_populates="cart_items")
+
+   @property
+   def total(self) -> Decimal:
+      return self.unit_price * self.quantity
 
 
 
+class CartItem(CartItemBase, table=True):
+   __tablename__ = "cart_items"
+   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+   
 
-from .cart import Cart
-from .product import Product
-Cart_Item.model_rebuild()
+
+from app.models.cart import Cart
+from app.models.product import Product
+CartItem.model_rebuild()

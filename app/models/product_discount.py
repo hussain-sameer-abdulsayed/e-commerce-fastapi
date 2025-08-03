@@ -1,16 +1,18 @@
 from __future__ import annotations
 from sqlmodel import Field, Relationship
-from typing import Optional
 from uuid import UUID
 
-from .discount_base import Discount_Base
+from app.models.discount_base import DiscountBase
 
 
 
-class Product_Discount(Discount_Base, table=True):
-   product_id: UUID = Field(foreign_key="product.id")
-   product : Optional["Product"] = Relationship(back_populates="product_discounts")
+class ProductDiscount(DiscountBase, table=True):
+   __tablename__ = "product_discounts"
+   product_id: UUID = Field(foreign_key="products.id", index=True)
+   product : "Product" = Relationship(back_populates="product_discounts")
 
 
-from .product import Product
-Product_Discount.model_rebuild()
+
+
+from app.models.product import Product
+ProductDiscount.model_rebuild()

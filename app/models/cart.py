@@ -6,23 +6,35 @@ from typing import List, Optional
 from uuid import uuid4, UUID
 
 
-
-
-class Cart(SQLModel, table=True):
-   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
-   user_id: Optional[UUID] = Field(default=None, foreign_key="user.id")
-   user: Optional["User"] = Relationship(back_populates="cart")
-   items: Optional[List["Cart_Item"]] = Relationship(back_populates="cart")
+class CartBase(SQLModel, table=False):
    total: Decimal | None = None
-   coupon_id: UUID = Field(default=None, foreign_key="coupon.id")
-   coupon: Optional["Coupon"] = Relationship(back_populates="cart")
+   
    coupon_amount: Decimal | None = None
    created_at: datetime = Field(default_factory=datetime.utcnow)
    updated_at: Optional[datetime] = None
 
 
+   user_id: UUID = Field(foreign_key="users.id", index=True, unique=True)
+   user: "User" = Relationship(back_populates="cart")
 
-from .user import User
-from .cart_item import Cart_Item
-from .coupon import Coupon
+
+   cart_items: List["CartItem"] = Relationship(back_populates="cart", cascade_delete=True)
+
+   
+   coupon_id: Optional[UUID] = Field(default=None, foreign_key="coupons.id")
+   coupon: Optional["Coupon"] = Relationship(back_populates="cart")
+
+
+
+
+
+class Cart(CartBase, table=True):
+   __tablename__ = "carts"
+   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+   
+
+
+from app.models.cart_item import CartItem
+from app.models.user import User
+from app.models.coupon import Coupon
 Cart.model_rebuild()

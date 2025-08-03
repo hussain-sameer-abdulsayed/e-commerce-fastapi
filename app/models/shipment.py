@@ -1,22 +1,36 @@
 from __future__ import annotations
 from decimal import Decimal
-from sqlmodel import SQLModel, Field
-from typing import Optional
+from sqlmodel import Relationship, SQLModel, Field
+from typing import List, Optional
 from datetime import datetime
 from uuid import uuid4, UUID
 
-
-from .enums import Province
-
+from app.enums.enums import Province
 
 
-class Shipment(SQLModel, table=True):
-   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+
+
+class ShipmentBase(SQLModel, table=False):
    province: Province = Field(default=Province.baghdad)
-   cost: Decimal 
+   cost: Decimal = Field(gt=0)
    created_at: datetime = Field(default_factory=datetime.utcnow)
-   updated_at: Optional[datetime]
+   updated_at: Optional[datetime] = None
+   
+   
+   orders: List["Order"] = Relationship(back_populates="shipment")
+
+   shipment_discounts: List["ShipmentDiscount"] = Relationship(back_populates="shipment", cascade_delete=True)
 
 
 
+
+class Shipment(ShipmentBase, table=True):
+   __tablename__ = "shipments"
+   id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+
+
+
+
+from app.models.shipment import Shipment
+from app.models.order import Order
 Shipment.model_rebuild()

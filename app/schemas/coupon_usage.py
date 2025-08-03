@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from schemas import BaseSchema
+from .base_schema import BaseSchema
 
 
 class CouponUsageBase(BaseSchema):

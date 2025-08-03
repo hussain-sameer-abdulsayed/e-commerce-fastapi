@@ -6,20 +6,17 @@ from datetime import date, datetime
 from uuid import uuid4, UUID
 
 
-class Discount_Base(SQLModel, table=False):
+class DiscountBase(SQLModel, table=False):
    id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
    discount_amount: int
-   is_active: bool = Field(default=True)
+   is_active: bool = Field(default=True, index=True)
    start_at: date
    end_at: date
    created_at: datetime = Field(default_factory=datetime.utcnow)
-   updated_at: Optional[datetime]
+   updated_at: Optional[datetime] = None
 
    @property
    def is_currently_active(self) -> bool:
       now = datetime.utcnow()
       return self.is_active and self.start_at <= now <= self.end_at
    
-
-
-Discount_Base.model_rebuild()
